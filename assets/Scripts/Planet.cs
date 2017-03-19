@@ -111,9 +111,10 @@ public class Planet : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            GetComponent<MeshRenderer>().material.color = Color.blue;
-        }
+    }
+
+    void OnMouseDown()
+    {
+        GetComponent<MeshRenderer>().material.color = Color.blue;
     }
 }
