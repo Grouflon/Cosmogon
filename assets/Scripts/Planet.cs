@@ -125,10 +125,10 @@ public class Planet : MonoBehaviour
         {
             renderer.material.color = Color.white;
         }
+    }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            GetComponent<MeshRenderer>().material.color = Color.blue;
-        }
+    void OnMouseDown()
+    {
+        GetComponent<MeshRenderer>().material.color = Color.blue;
     }
 }
