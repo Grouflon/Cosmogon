@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour {
     public Text planetNameTextPrefab;
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
     {
         m_canvasTransform = (RectTransform)FindObjectOfType<Canvas>().transform;
         m_gameManager = FindObjectOfType<GameManager>();
