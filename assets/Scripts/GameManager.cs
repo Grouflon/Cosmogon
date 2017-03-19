@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour {
     public delegate void PlanetAction(Planet _planet);
     public event PlanetAction planetAdded;
 
+    public Player[] players;
+
     public Planet AddPlanet(string _name, Vector2 _position)
     {
         Planet p = Instantiate(planetPrefab, new Vector3(_position.x, _position.y, 0.0f), Quaternion.identity);

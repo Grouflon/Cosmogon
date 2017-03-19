@@ -59,6 +59,15 @@ public class SystemGen : MonoBehaviour {
                 }
             }
         }
+
+        //Assign Players
+        for (int i = 0; i < gm.players.Length; ++i)
+        {
+            if (i >= nbPlanet)
+                break;
+
+            planets[i].owner = gm.players[i];
+        }
     }
 	
 	// Update is called once per frame

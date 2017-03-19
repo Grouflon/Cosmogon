@@ -7,7 +7,7 @@ public class Planet : MonoBehaviour
 {
     public Link linkPrefab;
 
-    // public Player owner = null;
+    [System.NonSerialized] public Player owner = null;
     public int armyCount;
     [ReadOnly] public Planet[] links;
 
@@ -103,6 +103,11 @@ public class Planet : MonoBehaviour
         links = newLinks;
     }
 
+    public Planet()
+    {
+        owner = null;
+    }
+
     // Use this for initialization
     void Start ()
     {
@@ -111,6 +116,16 @@ public class Planet : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        MeshRenderer renderer = GetComponent<MeshRenderer>();
+        if (owner != null)
+        {
+            renderer.material.color = owner.color;
+        }
+        else
+        {
+            renderer.material.color = Color.white;
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             GetComponent<MeshRenderer>().material.color = Color.blue;

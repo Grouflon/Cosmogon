@@ -446,6 +446,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetPrefab: {fileID: 114534527093280222, guid: 50b5672467c42ce478987450f345f8d9,
     type: 2}
+  players:
+  - name: Jean-Kader
+    color: {r: 1, g: 0, b: 0, a: 0}
+  - name: Melvin
+    color: {r: 0.034482956, g: 0, b: 1, a: 0}
 --- !u!4 &1467473681
 Transform:
   m_ObjectHideFlags: 0

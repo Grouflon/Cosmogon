@@ -46,6 +46,11 @@ public class UIManager : MonoBehaviour {
 
             ui.armyCountText.rectTransform.position = planetScreenPosition;
             ui.nameText.rectTransform.position = planetScreenPosition + new Vector3(15.0f, -1.0f, 0.0f);
+
+            if (p.owner != null)
+            {
+                ui.nameText.color = p.owner.color;
+            }
         }
 	}
 
