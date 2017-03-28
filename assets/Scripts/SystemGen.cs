@@ -46,21 +46,21 @@ public class SystemGen : MonoBehaviour {
             // Add planet
             Planet p = Instantiate(planetPrefab, new Vector3(x, y, 0.0f), Quaternion.identity);
             p.name = planetName;
-            p.SetMaxLinkCount(nbPlanet);
+            p.SetMaxLinkCount(Random.Range(1, 4));
             p.armyCount = Random.Range(0, 4);
             planets.Add(p);
         }
 
 
         //Links Creation
-        for (int j = 0; j < nbPlanet; j++) {
+        /*for (int j = 0; j < nbPlanet; j++) {
             for (int i = 0; i < nbPlanet; i++)
             {
                 if (i != j) {
                     CreateLink(planets[j], planets[i]);
                 }
             }
-        }
+        }*/
 
         //Assign Players
         for (int i = 0; i < gm.players.Length; ++i)
@@ -69,6 +69,7 @@ public class SystemGen : MonoBehaviour {
                 break;
 
             planets[i].owner = gm.players[i];
+            planets[i].armyCount = 3;
         }
     }
 	
