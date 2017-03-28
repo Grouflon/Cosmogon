@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33501215737119470}
   - component: {fileID: 23778770933500936}
   - component: {fileID: 114534527093280222}
+  - component: {fileID: 135232037952070218}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
@@ -55,7 +56,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 8f638013a0cfa4a398f00d05518a0b41, type: 2}
+  - {fileID: 2100000, guid: 2dc31e15862603c418ec0fa71dd2c56d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,5 +94,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkPrefab: {fileID: 114087316691748320, guid: bda5152246d0e8646b2f342011742c36,
     type: 2}
+  linkAnchorPrefab: {fileID: 1927864063579832, guid: 116de5bff76ee9840970ace8f0a17a74,
+    type: 2}
+  owner: {fileID: 0}
   armyCount: 0
   links: []
+--- !u!135 &135232037952070218
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1476957027339612}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 0}

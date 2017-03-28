@@ -1,10 +1,23 @@
 fileFormatVersion: 2
 guid: 20e22f8d1f0976a4e90ca700de4cf6f4
-timeCreated: 1489951118
+timeCreated: 1490530917
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - armyCountTextPrefab: {fileID: 114322770336682908, guid: 66f6b8c12e4925349ab30cc56851c89d,
+      type: 2}
+  - planetNameTextPrefab: {fileID: 114209262045983788, guid: b55a9d4cd2278904e87bef872b00c9b3,
+      type: 2}
+  - selectionPrefab: {fileID: 1913484347373114, guid: 08a9963a733d6e640a4c55c1556f1220,
+      type: 2}
+  - linkPrefab: {fileID: 1739719239593022, guid: bda5152246d0e8646b2f342011742c36,
+      type: 2}
+  - crossPrefab: {fileID: 1903733019103928, guid: 6817e10dbe20b514f94197135dbaa876,
+      type: 2}
+  - rangePrefab: {fileID: 1407708282494104, guid: fc4b76c02f3355a4bbac72825d60dbc5,
+      type: 2}
+  - phaseInfoText: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

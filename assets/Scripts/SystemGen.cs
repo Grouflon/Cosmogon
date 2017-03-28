@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SystemGen : MonoBehaviour {
 
+    public Planet planetPrefab;
     public int nbPlanet;
 
     // Use this for initialization
@@ -43,7 +44,8 @@ public class SystemGen : MonoBehaviour {
             }
 
             // Add planet
-            Planet p = gm.AddPlanet(planetName, new Vector2(x, y));
+            Planet p = Instantiate(planetPrefab, new Vector3(x, y, 0.0f), Quaternion.identity);
+            p.name = planetName;
             p.SetMaxLinkCount(nbPlanet);
             p.armyCount = Random.Range(0, 4);
             planets.Add(p);

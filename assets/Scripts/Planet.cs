@@ -5,23 +5,31 @@ using UnityEngine.UI;
 
 public class Planet : MonoBehaviour
 {
-    public Link linkPrefab;
-
-    [System.NonSerialized] public Player owner = null;
+    public Player owner = null;
     public int armyCount;
+
     [ReadOnly] public Planet[] links;
+    [HideInInspector] public GameObject[] linkAnchors;
+
+    public Link linkPrefab;
+    public GameObject linkAnchorPrefab;
+    public float anchorRadius = 1.0f;
 
     public delegate void PlanetAction(Planet _planet);
     public event PlanetAction linkAdded;
     public event PlanetAction linkRemoved;
 
-    public void AddLink(Planet _planet)
+    // Low level link manipulation function, won't check the game rules (action count, current player etc...)
+    public bool AddLink(Planet _planet)
     {
+        if (_planet == this)
+            return false;
+
         // First check if link is already there
         for (int i = 0; i < links.Length; ++i)
         {
             if (links[i] == _planet)
-                return;
+                return false;
         }
 
         // If not, try to add it
@@ -41,20 +49,24 @@ public class Planet : MonoBehaviour
                 otherLink = i;
             }
         }
-        if (selfLink != -1 && otherLink != -1)
-        {
-            links[selfLink] = _planet;
-            _planet.links[otherLink] = this;
+        if (selfLink == -1 || otherLink == -1)
+            return false;
 
-            Link link = Instantiate(linkPrefab);
-            link.Init(this, _planet);
 
-            if (linkAdded != null) linkAdded(_planet);
-            if (_planet.linkAdded != null) _planet.linkAdded(this);
-        }
+        links[selfLink] = _planet;
+        _planet.links[otherLink] = this;
+
+        Link link = Instantiate(linkPrefab);
+        link.Init(this, _planet);
+
+        if (linkAdded != null) linkAdded(_planet);
+        if (_planet.linkAdded != null) _planet.linkAdded(this);
+
+        return true;
     }
 
-    public void RemoveLink(Planet _planet)
+    // Low level link manipulation function, won't check the game rules (action count, current player etc...)
+    public bool RemoveLink(Planet _planet)
     {
         bool found = false;
         for (int i = 0; i < links.Length; ++i)
@@ -67,6 +79,9 @@ public class Planet : MonoBehaviour
             }
         }
 
+        if (!found)
+            return false;
+
         for (int i = 0; i < _planet.links.Length; ++i)
         {
             if (_planet.links[i] == this)
@@ -76,11 +91,10 @@ public class Planet : MonoBehaviour
             }
         }
 
-        if (found)
-        {
-            if (linkRemoved != null) linkRemoved(_planet);
-            if (_planet.linkRemoved != null) _planet.linkRemoved(this);
-        }
+        if (linkRemoved != null) linkRemoved(_planet);
+        if (_planet.linkRemoved != null) _planet.linkRemoved(this);
+
+        return true;
     }
 
     public void SetMaxLinkCount(int _value)
@@ -101,16 +115,30 @@ public class Planet : MonoBehaviour
             newLinks[i] = links[i];
         }
         links = newLinks;
+
+        InitializeLinkAnchors();
     }
 
-    public Planet()
+    public bool HasLinkWith(Planet _planet)
     {
-        owner = null;
+        foreach (Planet p in links)
+        {
+            if (p == _planet)
+                return true;
+        }
+        return false;
     }
 
     // Use this for initialization
     void Start ()
     {
+        m_gm = FindObjectOfType<GameManager>();
+        m_ui = FindObjectOfType<UIManager>();
+
+        InitializeLinkAnchors();
+
+        // HANDLE INSTANTIATION FROM UNITY EDITOR
+        m_gm.RegisterPlanet(this);
     }
 	
 	// Update is called once per frame
@@ -127,8 +155,45 @@ public class Planet : MonoBehaviour
         }
     }
 
-    void OnMouseDown()
+    void InitializeLinkAnchors()
     {
-        GetComponent<MeshRenderer>().material.color = Color.blue;
+        if (linkAnchors != null)
+        {
+            for (int i = 0; i < linkAnchors.Length; ++i)
+            {
+                Destroy(linkAnchors[i]);
+            }
+        }
+
+        linkAnchors = new GameObject[links.Length];
+        float angleStep = Mathf.PI * 2.0f / links.Length;
+        for (int i = 0; i < links.Length; ++i)
+        {
+            linkAnchors[i] = Instantiate(linkAnchorPrefab, transform);
+            linkAnchors[i].transform.localPosition = new Vector3(Mathf.Cos(i * angleStep), Mathf.Sin(i * angleStep), 0.0f) * anchorRadius;
+        }
     }
+
+    void OnMouseEnter()
+    {
+        m_ui.OnMouseEnterPlanet(this);
+    }
+
+    void OnMouseExit()
+    {
+        m_ui.OnMouseExitPlanet(this);
+    }
+
+    void OnMouseUpAsButton()
+    {
+        m_ui.OnPlanetClicked(this);
+    }
+
+    private void OnMouseDrag()
+    {
+        m_ui.OnPlanetDragged(this);
+    }
+
+    GameManager m_gm;
+    UIManager m_ui;
 }

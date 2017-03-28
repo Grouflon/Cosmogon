@@ -2,11 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Player
+public class Player : MonoBehaviour
 {
-    public string name;
     public Color color;
-
-    private Canvas c;    
 }
