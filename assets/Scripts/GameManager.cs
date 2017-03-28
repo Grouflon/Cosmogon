@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // All the player and ai input must manipulate the game through the functions of this class
 
@@ -19,8 +20,10 @@ public class GameManager : MonoBehaviour {
 
     public delegate void PlanetAction(Planet _planet);
     public delegate void GameAction();
+    public delegate void PlayerAction(Player _player);
     public event PlanetAction planetAdded;
     public event GameAction phaseEnded;
+    public event PlayerAction gameOver;
 
     [HideInInspector] public Player[] players;
 
@@ -42,6 +45,11 @@ public class GameManager : MonoBehaviour {
         }
 
         if (phaseEnded != null) phaseEnded();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Attack(Planet _from, Planet _to)
@@ -104,6 +112,11 @@ public class GameManager : MonoBehaviour {
     }
 
     #endregion
+
+    public bool IsGameOver()
+    {
+        return m_gameOver;
+    }
 
     public Player GetCurrentPlayer()
     {
@@ -174,11 +187,23 @@ public class GameManager : MonoBehaviour {
         StartPhase(Phase.Conquest);
     }
 
-	// Update is called once per frame
 	void Update ()
     {
-		
-	}
+        List<Player> livingPlayers = new List<Player>();
+		foreach (Planet p in m_planets)
+        {
+            if (p.owner != null && livingPlayers.FindIndex(player => p.owner == player) == -1)
+            {
+                livingPlayers.Add(p.owner);
+            }    
+        }
+
+        if (!m_gameOver && livingPlayers.Count == 1)
+        {
+            m_gameOver = true;
+            gameOver(livingPlayers[0]);
+        }
+    }
 
     List<Planet> m_planets;
 
@@ -186,4 +211,5 @@ public class GameManager : MonoBehaviour {
     int m_turn = 0;
     int m_currentPlayer = 0;
     int m_remainingActions = 0;
+    bool m_gameOver = false;
 }

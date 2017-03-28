@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour {
     public GameObject rangePrefab;
 
     public Text phaseInfoText;
+    public Button endPhaseButton;
+    public Button restartButton;
 
     public void OnMouseEnterPlanet(Planet _p)
     {
@@ -28,6 +30,9 @@ public class UIManager : MonoBehaviour {
 
     public void OnPlanetClicked(Planet _p)
     {
+        if (m_gm.IsGameOver())
+            return;
+
         if (m_gm.GetCurrentPhase() == GameManager.Phase.Conquest)
         {
             if (m_selectedPlanet == null)
@@ -52,6 +57,9 @@ public class UIManager : MonoBehaviour {
 
     public void OnPlanetDragged(Planet _p)
     {
+        if (m_gm.IsGameOver())
+            return;
+
         if (m_gm.GetCurrentPhase() == GameManager.Phase.Conquest
             && _p.owner == m_gm.GetCurrentPlayer()
             && m_gm.GetRemainingActions() > 0)
@@ -81,6 +89,7 @@ public class UIManager : MonoBehaviour {
 
         m_gm.planetAdded += OnPlanetAdded;
         m_gm.phaseEnded += OnPhaseEnded;
+        m_gm.gameOver += OnGameOver;
 	}
 
 
@@ -94,6 +103,18 @@ public class UIManager : MonoBehaviour {
         ui.nameText.transform.SetParent(m_canvasTransform);
 
         m_planetUIs.Add(_planet, ui);
+    }
+
+
+    void OnGameOver(Player _winner)
+    {
+        Color playerColor = _winner.color;
+        playerColor.a = 1.0f;
+        phaseInfoText.color = playerColor;
+        phaseInfoText.text = _winner.name + " wins !";
+
+        endPhaseButton.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(true);
     }
 	
 
@@ -183,16 +204,19 @@ public class UIManager : MonoBehaviour {
         }
 
         // MAIN UI TEXTS
-        Player currentPlayer = m_gm.GetCurrentPlayer();
-        Color playerColor = currentPlayer.color;
-        playerColor.a = 1.0f;
-        phaseInfoText.color = playerColor;
-        string actionQualifier = "actions";
-        if (m_gm.GetCurrentPhase() == GameManager.Phase.Conquest) actionQualifier = "links";
-        else if (m_gm.GetCurrentPhase() == GameManager.Phase.Recruitment) actionQualifier = "recruits";
-        phaseInfoText.text = currentPlayer.name + " playing"
-            + " | " + m_gm.GetCurrentPhase().ToString() + " phase"
-            + " | " + m_gm.GetRemainingActions() + " " + actionQualifier + " remaining";
+        if (!m_gm.IsGameOver())
+        {
+            Player currentPlayer = m_gm.GetCurrentPlayer();
+            Color playerColor = currentPlayer.color;
+            playerColor.a = 1.0f;
+            phaseInfoText.color = playerColor;
+            string actionQualifier = "actions";
+            if (m_gm.GetCurrentPhase() == GameManager.Phase.Conquest) actionQualifier = "links";
+            else if (m_gm.GetCurrentPhase() == GameManager.Phase.Recruitment) actionQualifier = "recruits";
+            phaseInfoText.text = currentPlayer.name + " playing"
+                + " | " + m_gm.GetCurrentPhase().ToString() + " phase"
+                + " | " + m_gm.GetRemainingActions() + " " + actionQualifier + " remaining";
+        }
 	}
 
 
