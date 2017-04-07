@@ -92,13 +92,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66dce19e8e9092740acef7ace347f3c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
+  armyCount: 0
+  links: []
+  linkAnchors: []
   linkPrefab: {fileID: 114087316691748320, guid: bda5152246d0e8646b2f342011742c36,
     type: 2}
   linkAnchorPrefab: {fileID: 1927864063579832, guid: 116de5bff76ee9840970ace8f0a17a74,
     type: 2}
-  owner: {fileID: 0}
-  armyCount: 0
-  links: []
+  anchorRadius: 0.5
 --- !u!135 &135232037952070218
 SphereCollider:
   m_ObjectHideFlags: 1

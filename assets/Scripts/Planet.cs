@@ -170,7 +170,7 @@ public class Planet : MonoBehaviour
         for (int i = 0; i < links.Length; ++i)
         {
             linkAnchors[i] = Instantiate(linkAnchorPrefab, transform);
-            linkAnchors[i].transform.localPosition = new Vector3(Mathf.Cos(i * angleStep), Mathf.Sin(i * angleStep), 0.0f) * anchorRadius;
+            linkAnchors[i].transform.localPosition = new Vector3(Mathf.Cos(i * angleStep), Mathf.Sin(i * angleStep), -2.0f) * anchorRadius;
         }
     }
 

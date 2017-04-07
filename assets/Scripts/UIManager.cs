@@ -183,7 +183,7 @@ public class UIManager : MonoBehaviour {
             ui.nameText.text = p.name;
 
             ui.armyCountText.rectTransform.position = planetScreenPosition;
-            ui.nameText.rectTransform.position = planetScreenPosition + new Vector3(15.0f, -1.0f, 0.0f);
+            ui.nameText.rectTransform.position = planetScreenPosition + planetNameTextPrefab.transform.position;
 
             if (p.owner != null)
             {
