@@ -7,8 +7,12 @@ public class Planet : MonoBehaviour
 {
     public Player owner = null;
     public int armyCount;
-
+    #if UNITY_EDITOR
     [ReadOnly] public Planet[] links;
+    #else
+    public Planet[] links;
+    #endif
+
     [HideInInspector] public GameObject[] linkAnchors;
 
     public Link linkPrefab;
