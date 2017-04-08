@@ -133,6 +133,16 @@ public class Planet : MonoBehaviour
         return false;
     }
 
+    public int GetFreeLinksCount()
+    {
+        int result = 0;
+        foreach(Planet p in links)
+        {
+            if (p == null) ++result;
+        }
+        return result;
+    }
+
     // Use this for initialization
     void Start ()
     {

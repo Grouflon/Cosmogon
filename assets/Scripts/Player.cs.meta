@@ -1,10 +1,12 @@
 fileFormatVersion: 2
 guid: c420dd9669c199b4b8f22368ca970828
-timeCreated: 1489955251
+timeCreated: 1491671091
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - AIPrefab: {fileID: 114537564815573592, guid: cc6550904c2a1234ab3259f99b751c04,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

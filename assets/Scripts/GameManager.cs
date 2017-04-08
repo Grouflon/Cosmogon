@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour {
     public int linksPerTurn = 3;
     public int maxRecruitsPerPlanet = 10;
     public float basicLinkRange = 4.0f;
+    public float AIPlayTime = 2.0f;
 
     public delegate void PlanetAction(Planet _planet);
     public delegate void GameAction();
@@ -51,6 +53,8 @@ public class GameManager : MonoBehaviour {
 
             StartPhase(Phase.Conquest);
         }
+
+        m_AITimer = 0.0f;
 
         if (phaseEnded != null) phaseEnded();
     }
@@ -119,7 +123,6 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    #endregion
 
     public bool IsGameOver()
     {
@@ -140,6 +143,24 @@ public class GameManager : MonoBehaviour {
     {
         return m_remainingActions;
     }
+
+    public ReadOnlyCollection<Planet> GetPlanets()
+    {
+        return m_planets.AsReadOnly();
+    }
+
+    public bool CanLinkPlanets(Player _p, Planet _a, Planet _b)
+    {
+        if (_a.owner != _p && _b.owner != _p)
+            return false;
+
+        if (_a.GetFreeLinksCount() == 0 || _b.GetFreeLinksCount() == 0)
+            return false;
+
+        return (_a.transform.position - _b.transform.position).magnitude <= basicLinkRange;
+    }
+
+    #endregion
 
     public void RegisterPlanet(Planet _p)
     {
@@ -199,6 +220,20 @@ public class GameManager : MonoBehaviour {
     {
         if (!m_gameOver)
         {
+            // MANAGE AI
+            if (GetCurrentPlayer().controlType == PlayerControlType.AI)
+            {
+                m_AITimer += Time.deltaTime;
+
+
+                // NOTE: do not factorize call to GetCurrentPlayer(), result may change during the loop.
+                while (GetCurrentPlayer().controlType == PlayerControlType.AI && m_AITimer > AIPlayTime)
+                {
+                    GetCurrentPlayer().GetAI().PlayAction();
+                    m_AITimer -= AIPlayTime;
+                }
+            }
+
             // GATHER INFORMATION
             List<Player> livingPlayers = new List<Player>();
             int nonOwnedPlanets = 0;
@@ -247,4 +282,5 @@ public class GameManager : MonoBehaviour {
     int m_currentPlayer = 0;
     int m_remainingActions = 0;
     bool m_gameOver = false;
+    float m_AITimer = 0.0f;
 }

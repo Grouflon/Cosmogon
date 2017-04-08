@@ -33,6 +33,9 @@ public class UIManager : MonoBehaviour {
         if (m_gm.IsGameOver())
             return;
 
+        if (m_gm.GetCurrentPlayer().controlType != PlayerControlType.Human)
+            return;
+
         if (m_gm.GetCurrentPhase() == GameManager.Phase.Conquest)
         {
             if (m_selectedPlanet == null)
@@ -58,6 +61,9 @@ public class UIManager : MonoBehaviour {
     public void OnPlanetDragged(Planet _p)
     {
         if (m_gm.IsGameOver())
+            return;
+
+        if (m_gm.GetCurrentPlayer().controlType != PlayerControlType.Human)
             return;
 
         if (m_gm.GetCurrentPhase() == GameManager.Phase.Conquest
@@ -120,11 +126,95 @@ public class UIManager : MonoBehaviour {
 
 	void Update ()
     {
-        Camera cam = Camera.main;
         m_selectionObject.SetActive(false);
         m_linkObject.SetActive(false);
         m_crossObject.SetActive(false);
         m_rangeObject.SetActive(false);
+
+        CommonUIUpdate();
+
+        if (!m_gm.IsGameOver())
+        {
+            switch (m_gm.GetCurrentPlayer().controlType)
+            {
+                case PlayerControlType.Human:
+                    {
+                        HumanPlayerUpdate();
+                    }
+                    break;
+
+                case PlayerControlType.AI:
+                    {
+                        AIPlayerUpdate();
+                    }
+                    break;
+            }
+        }
+    }
+
+
+    void OnPhaseEnded()
+    {
+        m_selectedPlanet = null;
+        m_linkSource = null;
+        m_hoveredPlanet = null;
+    }
+
+    void CommonUIUpdate()
+    {
+        Camera cam = Camera.main;
+
+        // PLANET TEXTS
+        foreach (KeyValuePair<Planet, PlanetUI> pair in m_planetUIs)
+        {
+            Planet p = pair.Key;
+            PlanetUI ui = pair.Value;
+            Vector3 planetScreenPosition = cam.WorldToScreenPoint(pair.Key.transform.position);
+
+            ui.armyCountText.text = p.armyCount.ToString();
+            ui.nameText.text = p.name;
+
+            ui.armyCountText.rectTransform.position = planetScreenPosition;
+            ui.nameText.rectTransform.position = planetScreenPosition + planetNameTextPrefab.transform.position;
+
+            if (p.owner != null)
+            {
+                Color c = p.owner.color; ;
+                c.a = 1.0f;
+                ui.nameText.color = c;
+            }
+            else
+            {
+                ui.nameText.color = planetNameTextPrefab.color;
+            }
+
+            if (p == m_selectedPlanet)
+            {
+                m_selectionObject.SetActive(true);
+                m_selectionObject.transform.position = p.transform.position + new Vector3(0.0f, 0.0f, 0.1f);
+            }
+        }
+
+        // MAIN UI TEXTS
+        if (!m_gm.IsGameOver())
+        {
+            Player currentPlayer = m_gm.GetCurrentPlayer();
+            Color playerColor = currentPlayer.color;
+            playerColor.a = 1.0f;
+            phaseInfoText.color = playerColor;
+            string actionQualifier = "actions";
+            if (m_gm.GetCurrentPhase() == GameManager.Phase.Conquest) actionQualifier = "links";
+            else if (m_gm.GetCurrentPhase() == GameManager.Phase.Recruitment) actionQualifier = "recruits";
+            phaseInfoText.text = currentPlayer.name + " playing"
+                + " | " + m_gm.GetCurrentPhase().ToString() + " phase"
+                + " | " + m_gm.GetRemainingActions() + " " + actionQualifier + " remaining";
+        }
+    }
+
+    void HumanPlayerUpdate()
+    {
+        Camera cam = Camera.main;
+        endPhaseButton.interactable = true;
 
         // INPUTS
         if (Input.GetMouseButtonDown(0) && m_hoveredPlanet == null)
@@ -171,60 +261,11 @@ public class UIManager : MonoBehaviour {
                 m_crossObject.transform.position = m_linkObject.transform.position + (linkVector * 0.5f);
             }
         }
+    }
 
-        // PLANET TEXTS
-		foreach(KeyValuePair<Planet, PlanetUI> pair in m_planetUIs)
-        {
-            Planet p = pair.Key;
-            PlanetUI ui = pair.Value;
-            Vector3 planetScreenPosition = cam.WorldToScreenPoint(pair.Key.transform.position);
-
-            ui.armyCountText.text = p.armyCount.ToString();
-            ui.nameText.text = p.name;
-
-            ui.armyCountText.rectTransform.position = planetScreenPosition;
-            ui.nameText.rectTransform.position = planetScreenPosition + planetNameTextPrefab.transform.position;
-
-            if (p.owner != null)
-            {
-                Color c = p.owner.color; ;
-                c.a = 1.0f;
-                ui.nameText.color = c;
-            }
-            else
-            {
-                ui.nameText.color = planetNameTextPrefab.color;
-            }
-
-            if (p == m_selectedPlanet)
-            {
-                m_selectionObject.SetActive(true);
-                m_selectionObject.transform.position = p.transform.position + new Vector3(0.0f, 0.0f, 0.1f);
-            }
-        }
-
-        // MAIN UI TEXTS
-        if (!m_gm.IsGameOver())
-        {
-            Player currentPlayer = m_gm.GetCurrentPlayer();
-            Color playerColor = currentPlayer.color;
-            playerColor.a = 1.0f;
-            phaseInfoText.color = playerColor;
-            string actionQualifier = "actions";
-            if (m_gm.GetCurrentPhase() == GameManager.Phase.Conquest) actionQualifier = "links";
-            else if (m_gm.GetCurrentPhase() == GameManager.Phase.Recruitment) actionQualifier = "recruits";
-            phaseInfoText.text = currentPlayer.name + " playing"
-                + " | " + m_gm.GetCurrentPhase().ToString() + " phase"
-                + " | " + m_gm.GetRemainingActions() + " " + actionQualifier + " remaining";
-        }
-	}
-
-
-    void OnPhaseEnded()
+    void AIPlayerUpdate()
     {
-        m_selectedPlanet = null;
-        m_linkSource = null;
-        m_hoveredPlanet = null;
+        endPhaseButton.interactable = false;
     }
 
 

@@ -176,7 +176,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1559732081787976
 GameObject:
   m_ObjectHideFlags: 1
@@ -684,7 +684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c420dd9669c199b4b8f22368ca970828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 0.006896496, b: 1, a: 1}
+  color: {r: 1, g: 0.47586206, b: 0, a: 1}
+  controlType: 1
 --- !u!114 &114378145552741556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -756,7 +757,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c420dd9669c199b4b8f22368ca970828, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 0, b: 0, a: 1}
+  color: {r: 0.2355104, g: 0.8897059, b: 0.51072365, a: 1}
+  controlType: 0
 --- !u!114 &114602923032434880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -771,9 +773,11 @@ MonoBehaviour:
   linksPerTurn: 3
   maxRecruitsPerPlanet: 10
   basicLinkRange: 3
+  AIPlayTime: 1
   players:
   - {fileID: 0}
   - {fileID: 0}
+  winningCondition: 0
 --- !u!114 &114610088212426796
 MonoBehaviour:
   m_ObjectHideFlags: 1
