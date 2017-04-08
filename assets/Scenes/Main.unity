@@ -164,6 +164,76 @@ Prefab:
       propertyPath: color.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 223258615122732422, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224161202350207358, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224161202350207358, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224161202350207358, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224161202350207358, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224161202350207358, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224161202350207358, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224161202350207358, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 459
+      objectReference: {fileID: 0}
+    - target: {fileID: 224161202350207358, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 205
+      objectReference: {fileID: 0}
+    - target: {fileID: 224161202350207358, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 918
+      objectReference: {fileID: 0}
+    - target: {fileID: 224161202350207358, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 410
+      objectReference: {fileID: 0}
+    - target: {fileID: 224161202350207358, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224161202350207358, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114202129389680816, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+        type: 2}
+      propertyPath: m_UiScaleMode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 200536fb80cd6544dbe5fca3ffe874ef, type: 2}
   m_IsPrefabParent: 0

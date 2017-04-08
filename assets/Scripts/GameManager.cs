@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum WinningCondition
+{
+    LastManStanding,
+    FullConquest
+}
+
 // All the player and ai input must manipulate the game through the functions of this class
 
 public class GameManager : MonoBehaviour {
@@ -26,6 +32,8 @@ public class GameManager : MonoBehaviour {
     public event PlayerAction gameOver;
 
     [HideInInspector] public Player[] players;
+
+    public WinningCondition winningCondition = WinningCondition.LastManStanding;
 
     #region GameActions
 
@@ -189,19 +197,46 @@ public class GameManager : MonoBehaviour {
 
 	void Update ()
     {
-        List<Player> livingPlayers = new List<Player>();
-		foreach (Planet p in m_planets)
+        if (!m_gameOver)
         {
-            if (p.owner != null && livingPlayers.FindIndex(player => p.owner == player) == -1)
+            // GATHER INFORMATION
+            List<Player> livingPlayers = new List<Player>();
+            int nonOwnedPlanets = 0;
+            foreach (Planet p in m_planets)
             {
-                livingPlayers.Add(p.owner);
-            }    
-        }
+                if (p.owner == null)
+                {
+                    ++nonOwnedPlanets;
+                }
+                else if (livingPlayers.FindIndex(player => p.owner == player) == -1)
+                {
+                    livingPlayers.Add(p.owner);
+                }
+            }
 
-        if (!m_gameOver && livingPlayers.Count == 1)
-        {
-            m_gameOver = true;
-            gameOver(livingPlayers[0]);
+            // TEST GAMEOVER CONDITIONS
+            switch(winningCondition)
+            {
+                case WinningCondition.LastManStanding:
+                    {
+                        if (livingPlayers.Count == 1)
+                        {
+                            m_gameOver = true;
+                            gameOver(livingPlayers[0]);
+                        }
+                    }
+                    break;
+
+                case WinningCondition.FullConquest:
+                    {
+                        if (livingPlayers.Count == 1 && nonOwnedPlanets == 0)
+                        {
+                            m_gameOver = true;
+                            gameOver(livingPlayers[0]);
+                        }
+                    }
+                    break;
+            }
         }
     }
 
