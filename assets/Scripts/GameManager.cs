@@ -218,10 +218,16 @@ public class GameManager : MonoBehaviour {
 
 	void Update ()
     {
-        //Reset Scene
+        //Reset Scene on f6
         if (Input.GetKeyUp(KeyCode.F6))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        //Advance game phase on Space
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            EndPhase();
         }
 
 
