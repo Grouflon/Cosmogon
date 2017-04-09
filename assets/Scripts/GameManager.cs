@@ -218,6 +218,13 @@ public class GameManager : MonoBehaviour {
 
 	void Update ()
     {
+        //Reset Scene
+        if (Input.GetKeyUp(KeyCode.F6))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+
         if (!m_gameOver)
         {
             // MANAGE AI
@@ -281,6 +288,6 @@ public class GameManager : MonoBehaviour {
     int m_turn = 0;
     int m_currentPlayer = 0;
     int m_remainingActions = 0;
-    bool m_gameOver = false;
+    public bool m_gameOver = false;
     float m_AITimer = 0.0f;
 }
