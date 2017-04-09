@@ -10,4 +10,6 @@ EditorBuildSettings:
   - enabled: 1
     path: assets/Scenes/Tuto2.unity
   - enabled: 1
+    path: assets/Scenes/Tuto3.unity
+  - enabled: 1
     path: assets/Scenes/Main.unity

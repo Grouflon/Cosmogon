@@ -21,6 +21,10 @@ public class TutoSceneManager : MonoBehaviour {
             }
             else if (SceneManager.GetActiveScene().name == "Tuto2")
             {
+                SceneManager.LoadScene("Tuto3");
+            }
+            else if (SceneManager.GetActiveScene().name == "Tuto3")
+            {
                 SceneManager.LoadScene("Main");
             }
         }

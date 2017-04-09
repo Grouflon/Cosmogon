@@ -21,6 +21,7 @@ TODO
 
     BUGS
     - BUG: Il y a toujours deux planètes l'une sur l'autre lors de la génération
+    - BUG: Il ne faut pas créer d'unité lorsque l'on attaque une planète vide (2 sur 0 donne 1 et 1)
 
     SOUND
     - Fx de sélection et de création de links
