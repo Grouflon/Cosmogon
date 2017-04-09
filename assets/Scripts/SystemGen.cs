@@ -46,7 +46,7 @@ public class SystemGen : MonoBehaviour {
             // Add planet
             Planet p = Instantiate(planetPrefab, new Vector3(x, y, 0.0f), Quaternion.identity);
             p.name = planetName;
-            p.SetMaxLinkCount(Random.Range(1, 4));
+            p.SetMaxLinkCount(Random.Range(2, 4));
             p.armyCount = Random.Range(0, 4);
             planets.Add(p);
         }
