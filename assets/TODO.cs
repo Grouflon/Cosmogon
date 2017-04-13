@@ -12,6 +12,8 @@ TODO
     - Reduire la largeur de la selection de planète
     - Pouvoir se déplacer hors screen avec double touch
     - Faire un appui long pour voir la zone de reach apparaitre (appui court = sélection)
+    - Bloquer le zoom max a la zone de jeu maximale
+    - Caméra pour écran tactile
 
     GENERATION
     - Placer toujours les players le plus loin possible les uns des autres
@@ -22,10 +24,11 @@ TODO
     BUGS
     - BUG: Il y a toujours deux planètes l'une sur l'autre lors de la génération
     - BUG: Il ne faut pas créer d'unité lorsque l'on attaque une planète vide (2 sur 0 donne 1 et 1)
-    - BUG: Les joueurs morts jouent quand même les salauds!
+    - BUG: Les joueurs morts jouent quand même les salaudSs!
+    - BUG: Le script de caméra devrait etre éxécuté avant le script d'UI, mais le panneau script execution order est tout bugué sa mère
 
     SOUND
-    - Fx de sélection et de création de links
+    - Sfx de sélection et de création de links
 
 
 

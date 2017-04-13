@@ -178,6 +178,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1606657903961360
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4891797231473138}
+  - component: {fileID: 114881833645340914}
+  m_Layer: 0
+  m_Name: Mouloud-Basil
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1610591600354064
 GameObject:
   m_ObjectHideFlags: 1
@@ -293,6 +309,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1921693820022858
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4402277930795770}
+  - component: {fileID: 114234354258332280}
+  m_Layer: 0
+  m_Name: Roger-Benoit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1975294600752590
 GameObject:
   m_ObjectHideFlags: 1
@@ -363,6 +395,19 @@ Transform:
   m_Father: {fileID: 4611261964549530}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4402277930795770
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1921693820022858}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4505788748225152}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4505788748225152
 Transform:
   m_ObjectHideFlags: 1
@@ -375,6 +420,8 @@ Transform:
   m_Children:
   - {fileID: 4508127474436356}
   - {fileID: 4827733070409876}
+  - {fileID: 4402277930795770}
+  - {fileID: 4891797231473138}
   m_Father: {fileID: 4611261964549530}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -463,6 +510,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4621732329150464}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4891797231473138
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1606657903961360}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4505788748225152}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4965323627622522
 Transform:
@@ -632,6 +692,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0.47586206, b: 0, a: 1}
+  controlType: 1
+--- !u!114 &114234354258332280
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1921693820022858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c420dd9669c199b4b8f22368ca970828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.6446366, g: 0.116782025, b: 0.7941176, a: 1}
   controlType: 1
 --- !u!114 &114256023335789098
 MonoBehaviour:
@@ -823,7 +896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   planetPrefab: {fileID: 114534527093280222, guid: 50b5672467c42ce478987450f345f8d9,
     type: 2}
-  nbPlanet: 10
+  nbPlanet: 16
 --- !u!114 &114664042532510198
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -910,6 +983,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114881833645340914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1606657903961360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c420dd9669c199b4b8f22368ca970828, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 0.98955375, g: 1, b: 0.24264705, a: 1}
+  controlType: 1
 --- !u!114 &114938584025582964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -935,9 +1021,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac3f02595cf288d428db868151137407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollingSpeed: 10
+  scrollingEdgeSize: 50
+  scrollingSpeed: 2
+  playingZoneExtraBorder: 1
   zoomingSpeed: 10
-  minZoom: 0.5
+  minZoom: 1.3
   maxZoom: 10
 --- !u!114 &114977981473058148
 MonoBehaviour:
