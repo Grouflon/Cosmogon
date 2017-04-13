@@ -169,13 +169,14 @@ public class UIManager : MonoBehaviour {
         {
             Planet p = pair.Key;
             PlanetUI ui = pair.Value;
-            Vector3 planetScreenPosition = cam.WorldToScreenPoint(pair.Key.transform.position);
+            Vector3 planetScreenPosition = cam.WorldToScreenPoint(p.transform.position);
+            float planetScreenRadius = (planetScreenPosition - cam.WorldToScreenPoint(p.transform.position + new Vector3(p.transform.localScale.x * 0.5f, 0.0f, 0.0f))).magnitude;
 
             ui.armyCountText.text = p.armyCount.ToString();
             ui.nameText.text = p.name;
 
             ui.armyCountText.rectTransform.position = planetScreenPosition;
-            ui.nameText.rectTransform.position = planetScreenPosition + planetNameTextPrefab.transform.position;
+            ui.nameText.rectTransform.position = planetScreenPosition + new Vector3(planetScreenRadius, -planetScreenRadius, 0.0f);
 
             if (p.owner != null)
             {

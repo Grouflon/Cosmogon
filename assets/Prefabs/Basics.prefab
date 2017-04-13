@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 92721794805079672}
   - component: {fileID: 124092775583179248}
   - component: {fileID: 81091213308907290}
+  - component: {fileID: 114946661271737590}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -506,6 +507,8 @@ Camera:
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 0
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -741,6 +744,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   winningCondition: 0
+  m_gameOver: 0
 --- !u!114 &114454481617705222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -920,6 +924,21 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
+--- !u!114 &114946661271737590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1255590863647780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3f02595cf288d428db868151137407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollingSpeed: 10
+  zoomingSpeed: 10
+  minZoom: 0.5
+  maxZoom: 10
 --- !u!114 &114977981473058148
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -989,7 +1008,7 @@ Canvas:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1298118295619550}
   m_Enabled: 1
-  serializedVersion: 2
+  serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
@@ -998,6 +1017,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0

@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 8
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -25,6 +25,7 @@ RenderSettings:
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
@@ -41,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 7
+  serializedVersion: 9
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -53,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 4
+    serializedVersion: 8
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -66,13 +67,27 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_DirectLightInLightProbes: 1
     m_FinalGather: 0
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
+    m_MixedBakeMode: 1
+    m_BakeBackend: 0
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 500
+    m_PVRBounces: 2
+    m_PVRFiltering: 0
+    m_PVRFilteringMode: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_RuntimeCPUUsage: 25
+  m_ShadowMaskMode: 2
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -89,6 +104,8 @@ NavMeshSettings:
     minRegionArea: 2
     manualCellSize: 0
     cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1001 &70045013
@@ -133,7 +150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4562474272037534, guid: 50b5672467c42ce478987450f345f8d9, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1476957027339612, guid: 50b5672467c42ce478987450f345f8d9, type: 2}
       propertyPath: m_Name
@@ -143,7 +160,7 @@ Prefab:
         type: 2}
       propertyPath: owner
       value: 
-      objectReference: {fileID: 659427735}
+      objectReference: {fileID: 0}
     - target: {fileID: 114534527093280222, guid: 50b5672467c42ce478987450f345f8d9,
         type: 2}
       propertyPath: armyCount
@@ -194,7 +211,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4562474272037534, guid: 50b5672467c42ce478987450f345f8d9, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1476957027339612, guid: 50b5672467c42ce478987450f345f8d9, type: 2}
       propertyPath: m_Name
@@ -204,7 +221,7 @@ Prefab:
         type: 2}
       propertyPath: owner
       value: 
-      objectReference: {fileID: 1498689827}
+      objectReference: {fileID: 0}
     - target: {fileID: 114534527093280222, guid: 50b5672467c42ce478987450f345f8d9,
         type: 2}
       propertyPath: armyCount
@@ -213,12 +230,26 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50b5672467c42ce478987450f345f8d9, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &659427735 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114550014522319182, guid: 200536fb80cd6544dbe5fca3ffe874ef,
+--- !u!1 &183584779 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1255590863647780, guid: 200536fb80cd6544dbe5fca3ffe874ef,
     type: 2}
   m_PrefabInternal: {fileID: 1880376999}
-  m_Script: {fileID: 11500000, guid: c420dd9669c199b4b8f22368ca970828, type: 3}
+--- !u!114 &183584785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 183584779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac3f02595cf288d428db868151137407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollingSpeed: 10
+  zoomingSpeed: 10
+  minZoom: 0.5
+  maxZoom: 10
 --- !u!1001 &1230397563
 Prefab:
   m_ObjectHideFlags: 0
@@ -261,7 +292,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4562474272037534, guid: 50b5672467c42ce478987450f345f8d9, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1476957027339612, guid: 50b5672467c42ce478987450f345f8d9, type: 2}
       propertyPath: m_Name
@@ -280,12 +311,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 50b5672467c42ce478987450f345f8d9, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1498689827 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114345935517092328, guid: 200536fb80cd6544dbe5fca3ffe874ef,
-    type: 2}
-  m_PrefabInternal: {fileID: 1880376999}
-  m_Script: {fileID: 11500000, guid: c420dd9669c199b4b8f22368ca970828, type: 3}
 --- !u!1001 &1880376999
 Prefab:
   m_ObjectHideFlags: 0
