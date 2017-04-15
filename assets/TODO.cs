@@ -1,12 +1,15 @@
 ﻿/* 
 TODO
     GAMEPLAY
-    - Reduire un peu la zone de reach des link
     - Avoir des planètes donnant une ressource spéciale à chaque tour
     - Skills: Trou noir = détruit une planète
     - Skills: Conquer = Change la couleur d'une planète
     - Skills: Teleport = Attaque une planète sans lien
     - Skills: Firewall = Protège une planète 3 tours
+    
+    EDITEUR
+    - Sortir les players du prefab
+    - Pouvoir préciser qui joue en premier
 
     UI
     - Reduire la largeur de la selection de planète
@@ -35,5 +38,7 @@ TODO
 
 
 DONE
+    - Avoir moins de hierarchie dans le prefab pour l'éditer dans le browser
+    - Reduire un peu la zone de reach des link
     - Plein de trucs trop oufs
 */

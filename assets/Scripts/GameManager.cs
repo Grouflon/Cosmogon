@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
     [Header("Balance")]
     public int linksPerTurn = 3;
     public int maxRecruitsPerPlanet = 10;
-    public float basicLinkRange = 4.0f;
+    public float basicLinkRange = 2.0f;
     public float AIPlayTime = 2.0f;
 
     public delegate void PlanetAction(Planet _planet);
@@ -294,6 +294,6 @@ public class GameManager : MonoBehaviour {
     int m_turn = 0;
     int m_currentPlayer = 0;
     int m_remainingActions = 0;
-    public bool m_gameOver = false;
+    bool m_gameOver = false;
     float m_AITimer = 0.0f;
 }

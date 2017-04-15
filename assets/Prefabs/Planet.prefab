@@ -73,6 +73,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
 --- !u!33 &33501215737119470
 MeshFilter:
@@ -93,7 +94,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
+  isSpiceProvider: 0
   armyCount: 0
+  spiceIcon: {fileID: 1138033776588624, guid: c64e32e544dc96546b70940ab68995d8, type: 2}
   links: []
   linkAnchors: []
   linkPrefab: {fileID: 114087316691748320, guid: bda5152246d0e8646b2f342011742c36,

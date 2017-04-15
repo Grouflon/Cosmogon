@@ -14,7 +14,7 @@ public class TutoSceneManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (gameManager.GetComponent<GameManager>().m_gameOver) {
+        if (gameManager.GetComponent<GameManager>().IsGameOver()) {
             if (SceneManager.GetActiveScene().name == "Tuto1")
             {
                 SceneManager.LoadScene("Tuto2");
