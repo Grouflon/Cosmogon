@@ -1,7 +1,6 @@
 ﻿/* 
 TODO
     GAMEPLAY
-    - Avoir des planètes donnant une ressource spéciale à chaque tour
     - Skills: Trou noir = détruit une planète
     - Skills: Conquer = Change la couleur d'une planète
     - Skills: Teleport = Attaque une planète sans lien
@@ -25,7 +24,7 @@ TODO
     - Positionnement moins "carré"
 
     BUGS
-    - BUG: Il y a toujours deux planètes l'une sur l'autre lors de la génération
+    - BUG: Il y a souvent deux planètes l'une sur l'autre lors de la génération
     - BUG: Il ne faut pas créer d'unité lorsque l'on attaque une planète vide (2 sur 0 donne 1 et 1)
     - BUG: Les joueurs morts jouent quand même les salaudSs!
     - BUG: Le script de caméra devrait etre éxécuté avant le script d'UI, mais le panneau script execution order est tout bugué sa mère
@@ -38,6 +37,7 @@ TODO
 
 
 DONE
+    - Avoir des planètes donnant une ressource spéciale à chaque tour
     - Avoir moins de hierarchie dans le prefab pour l'éditer dans le browser
     - Reduire un peu la zone de reach des link
     - Plein de trucs trop oufs

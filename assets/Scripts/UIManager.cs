@@ -208,7 +208,8 @@ public class UIManager : MonoBehaviour {
             else if (m_gm.GetCurrentPhase() == GameManager.Phase.Recruitment) actionQualifier = "recruits";
             phaseInfoText.text = currentPlayer.name + " playing"
                 + " | " + m_gm.GetCurrentPhase().ToString() + " phase"
-                + " | " + m_gm.GetRemainingActions() + " " + actionQualifier + " remaining";
+                + " | " + m_gm.GetRemainingActions() + " " + actionQualifier + " remaining"
+                + " | " + "Spice: " + m_gm.GetCurrentPlayer().spiceCount;
         }
     }
 

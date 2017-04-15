@@ -123,7 +123,6 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-
     public bool IsGameOver()
     {
         return m_gameOver;
@@ -174,6 +173,18 @@ public class GameManager : MonoBehaviour {
         if (planetAdded != null) planetAdded(_p);
     }
 
+    //Give the current player one spice for each spicy planet he owns
+    void harvestSpice()
+    {
+        foreach(Planet pl in m_planets)
+        {
+            if (pl.owner == GetCurrentPlayer()&&pl.isSpiceProvider)
+            {
+                GetCurrentPlayer().spiceCount++;
+            }
+        }
+    }
+
     void StartPhase(Phase _phase)
     {
         m_phase = _phase;
@@ -182,6 +193,7 @@ public class GameManager : MonoBehaviour {
         {
             case Phase.Conquest:
                 {
+                    harvestSpice();
                     m_remainingActions = linksPerTurn;
                 }
                 break;
