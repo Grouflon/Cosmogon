@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
     public Color color;
     public PlayerControlType controlType;
 
+    public int spiceCount=0;
+
     public AI GetAI()
     {
         return m_ai;

@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class Planet : MonoBehaviour
 {
     public Player owner = null;
+    public bool isSpiceProvider = false;
     public int armyCount;
+    public GameObject spiceIcon;
+
     #if UNITY_EDITOR
     [ReadOnly] public Planet[] links;
     #else
@@ -148,6 +151,12 @@ public class Planet : MonoBehaviour
     {
         m_gm = FindObjectOfType<GameManager>();
         m_ui = FindObjectOfType<UIManager>();
+
+        //Spawn de l'icone de spice
+        if (isSpiceProvider)
+        {
+            Instantiate(spiceIcon, new Vector3(transform.position.x + 0.10f, transform.position.y - 0.25f, 0.0f), Quaternion.identity);
+        }
 
         InitializeLinkAnchors();
 

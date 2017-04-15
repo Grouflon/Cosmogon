@@ -5,6 +5,7 @@ using UnityEngine;
 public class SystemGen : MonoBehaviour {
 
     public Planet planetPrefab;
+    public GameObject spiceIcon;
     public int nbPlanet;
 
     // Use this for initialization
@@ -43,8 +44,16 @@ public class SystemGen : MonoBehaviour {
                 vowelConsonantSelector = (vowelConsonantSelector + 1) % 2;
             }
 
+
             // Add planet
             Planet p = Instantiate(planetPrefab, new Vector3(x, y, 0.0f), Quaternion.identity);
+            //One chance out of three to be spiced
+            int isSpice = Random.Range(0, 4);
+            if (isSpice == 0) {
+                p.isSpiceProvider = true;
+            } else {
+                p.isSpiceProvider = false;
+            }
             p.name = planetName;
             p.SetMaxLinkCount(Random.Range(2, 4));
             p.armyCount = Random.Range(0, 4);
