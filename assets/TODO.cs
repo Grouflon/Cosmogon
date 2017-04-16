@@ -13,7 +13,7 @@ TODO
     - Reduire la largeur de la selection de planète
     - Faire un appui long pour voir la zone de reach apparaitre (appui court = sélection)
     - Double tap sur l'écran nous amène au zoom maximal.
-    - Faire un feedback quand le joueur essaie de scroller mais qu'il a atteint le borde de la zone de jeu (genre un border blanc qui apparait)
+    - Faire un feedback quand le joueur essaie de scroller mais qu'il a atteint le borde de la zone de jeu (genre un border blanc proportionel a la distance scrollée qui apparait)
 
     GENERATION
     - Placer toujours les players le plus loin possible les uns des autres
