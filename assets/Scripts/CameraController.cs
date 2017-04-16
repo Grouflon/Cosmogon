@@ -80,6 +80,65 @@ public class CameraController : MonoBehaviour {
         }
 
         // CLAMP CAMERA TO PLAYING ZONE
+        Rect cameraZone;
+        // ZOOM CLAMPING
+        cameraZone = ComputeCameraZone();
+        if (cameraZone.width > playingZone.width && cameraZone.height > playingZone.height)
+        {
+            float scaleFactor = 1.0f;
+            if (playingZone.width > playingZone.height)
+            {
+                scaleFactor = playingZone.width / cameraZone.width;
+            }
+            else
+            {
+                scaleFactor = playingZone.height / cameraZone.height;
+            }
+            m_camera.orthographicSize *= scaleFactor;
+        }
+
+
+        // SCROLL CLAMPING
+        cameraZone = ComputeCameraZone();
+        Vector3 cameraPosition = transform.position;
+        if ((cameraZone.width) > playingZone.width)
+        {
+            cameraPosition.x = playingZone.center.x;
+        }
+        else
+        {
+            if (cameraZone.xMin < playingZone.xMin)
+            {
+                cameraZone.x = playingZone.xMin;
+            }
+            else if (cameraZone.xMax > playingZone.xMax)
+            {
+                cameraZone.x = playingZone.xMax - cameraZone.width;
+            }
+            cameraPosition.x = cameraZone.center.x;
+        }
+
+        if (cameraZone.height > playingZone.height)
+        {
+            cameraPosition.y = playingZone.center.y;
+        }
+        else
+        {
+            if (cameraZone.yMin < playingZone.yMin)
+            {
+                cameraZone.y = playingZone.yMin;
+            }
+            else if (cameraZone.yMax > playingZone.yMax)
+            {
+                cameraZone.y = playingZone.yMax - cameraZone.height;
+            }
+            cameraPosition.y = cameraZone.center.y;
+        }
+        transform.position = cameraPosition;
+    }
+
+    Rect ComputeCameraZone()
+    {
         Vector3 cameraWorldMin = m_camera.ViewportToWorldPoint(Vector3.zero);
         Vector3 cameraWorldMax = m_camera.ViewportToWorldPoint(Vector3.one);
         Rect cameraZone = new Rect();
@@ -87,42 +146,7 @@ public class CameraController : MonoBehaviour {
         cameraZone.xMax = cameraWorldMax.x;
         cameraZone.yMin = cameraWorldMin.y;
         cameraZone.yMax = cameraWorldMax.y;
-
-        Vector3 cameraPosition = transform.position;
-        if ((cameraWorldMax.x - cameraWorldMin.x) > playingZone.width)
-        {
-            cameraPosition.x = playingZone.center.x;
-        }
-        else
-        {
-            if (cameraWorldMin.x < playingZone.xMin)
-            {
-                cameraZone.x = playingZone.xMin;
-            }
-            else if (cameraWorldMax.x > playingZone.xMax)
-            {
-                cameraZone.x = playingZone.xMax - cameraZone.width;
-            }
-            cameraPosition.x = cameraZone.center.x;
-        }
-
-        if ((cameraWorldMax.y - cameraWorldMin.y) > playingZone.height)
-        {
-            cameraPosition.y = playingZone.center.y;
-        }
-        else
-        {
-            if (cameraWorldMin.y < playingZone.yMin)
-            {
-                cameraZone.y = playingZone.yMin;
-            }
-            else if (cameraWorldMax.y > playingZone.yMax)
-            {
-                cameraZone.y = playingZone.yMax - cameraZone.height;
-            }
-            cameraPosition.y = cameraZone.center.y;
-        }
-        transform.position = cameraPosition;
+        return cameraZone;
     }
 
     Camera m_camera;
