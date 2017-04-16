@@ -14,8 +14,7 @@ TODO
     - Reduire la largeur de la selection de planète
     - Pouvoir se déplacer hors screen avec double touch
     - Faire un appui long pour voir la zone de reach apparaitre (appui court = sélection)
-    - Bloquer le zoom max a la zone de jeu maximale
-    - Caméra pour écran tactile
+    - Double tap sur l'écran nous amène au zoom maximal
 
     GENERATION
     - Placer toujours les players le plus loin possible les uns des autres
@@ -28,6 +27,8 @@ TODO
     - BUG: Il ne faut pas créer d'unité lorsque l'on attaque une planète vide (2 sur 0 donne 1 et 1)
     - BUG: Les joueurs morts jouent quand même les salaudSs!
     - BUG: Le script de caméra devrait etre éxécuté avant le script d'UI, mais le panneau script execution order est tout bugué sa mère
+    - BUG: Sur PC et sur Mobile, on peut dépasser le zoom maximum pendant jusqu'a un point on ou est recalé sur le bon zoom max
+    - BUG: Sur Mobile, L'inertie de scrolling est beaucoup trop sensible et incontrolable (désactivée pour le moment)
 
     SOUND
     - Sfx de sélection et de création de links
