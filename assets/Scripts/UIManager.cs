@@ -96,7 +96,17 @@ public class UIManager : MonoBehaviour {
         m_gm.planetAdded += OnPlanetAdded;
         m_gm.phaseEnded += OnPhaseEnded;
         m_gm.gameOver += OnGameOver;
-	}
+
+        endPhaseButton.onClick.AddListener(() =>
+        {
+            m_gm.EndPhase();
+        });
+
+        restartButton.onClick.AddListener(() =>
+        {
+            m_gm.Restart();
+        });
+    }
 
 
     void OnPlanetAdded(Planet _planet)

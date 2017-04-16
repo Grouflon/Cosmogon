@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
     public event GameAction phaseEnded;
     public event PlayerAction gameOver;
 
-    [HideInInspector] public Player[] players;
+    public Transform playersParent;
 
     public WinningCondition winningCondition = WinningCondition.LastManStanding;
 
@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour {
         }
         else if (m_phase == Phase.Recruitment)
         {
-            m_currentPlayer = (m_currentPlayer + 1) % players.Length;
+            m_currentPlayer = (m_currentPlayer + 1) % m_players.Count;
             if (m_currentPlayer == 0)
                 ++m_turn;
 
@@ -130,7 +130,7 @@ public class GameManager : MonoBehaviour {
 
     public Player GetCurrentPlayer()
     {
-        return players[m_currentPlayer];
+        return m_players[m_currentPlayer];
     }
 
     public Phase GetCurrentPhase()
@@ -146,6 +146,11 @@ public class GameManager : MonoBehaviour {
     public ReadOnlyCollection<Planet> GetPlanets()
     {
         return m_planets.AsReadOnly();
+    }
+
+    public ReadOnlyCollection<Player> GetPlayers()
+    {
+        return m_players.AsReadOnly();
     }
 
     public bool CanLinkPlanets(Player _p, Planet _a, Planet _b)
@@ -220,8 +225,16 @@ public class GameManager : MonoBehaviour {
 	void Awake ()
     {
         m_planets = new List<Planet>();
-        players = FindObjectsOfType<Player>();
-	}
+        m_players = new List<Player>();
+        foreach(Transform t in playersParent)
+        {
+            Player p = t.GetComponent<Player>();
+            if (p == null)
+                continue;
+
+            m_players.Add(p);
+        }
+    }
 
     void Start()
     {
@@ -301,6 +314,7 @@ public class GameManager : MonoBehaviour {
     }
 
     List<Planet> m_planets;
+    List<Player> m_players;
 
     Phase m_phase = Phase.Conquest;
     int m_turn = 0;

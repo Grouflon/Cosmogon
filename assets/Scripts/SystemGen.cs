@@ -5,7 +5,6 @@ using UnityEngine;
 public class SystemGen : MonoBehaviour {
 
     public Planet planetPrefab;
-    public GameObject spiceIcon;
     public int nbPlanet;
 
     // Use this for initialization
@@ -72,12 +71,12 @@ public class SystemGen : MonoBehaviour {
         }*/
 
         //Assign Players
-        for (int i = 0; i < gm.players.Length; ++i)
+        for (int i = 0; i < gm.GetPlayers().Count; ++i)
         {
             if (i >= nbPlanet)
                 break;
 
-            planets[i].owner = gm.players[i];
+            planets[i].owner = gm.GetPlayers()[i];
             planets[i].armyCount = 3;
         }
     }
