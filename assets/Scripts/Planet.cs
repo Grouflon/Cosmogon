@@ -20,7 +20,11 @@ public class Planet : MonoBehaviour
 
     public Link linkPrefab;
     public GameObject linkAnchorPrefab;
-    public float anchorRadius = 1.0f;
+    public float anchorIdleRadius = 1.0f;
+    public float anchorActiveRadius = 1.5f;
+    public float anchorLinkedRadius = 2.0f;
+    public float anchorAcceleration = 0.5f;
+    public float anchorRotationSpeed = 20.0f;
 
     public delegate void PlanetAction(Planet _planet);
     public event PlanetAction linkAdded;
@@ -167,6 +171,8 @@ public class Planet : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        UpdateAnchors(anchorAcceleration);
+
         MeshRenderer renderer = GetComponent<MeshRenderer>();
         if (owner != null)
         {
@@ -192,8 +198,64 @@ public class Planet : MonoBehaviour
         float angleStep = Mathf.PI * 2.0f / links.Length;
         for (int i = 0; i < links.Length; ++i)
         {
-            linkAnchors[i] = Instantiate(linkAnchorPrefab, transform);
-            linkAnchors[i].transform.localPosition = new Vector3(Mathf.Cos(i * angleStep), Mathf.Sin(i * angleStep), -2.0f) * anchorRadius;
+            linkAnchors[i] = Instantiate(linkAnchorPrefab);
+        }
+
+        UpdateAnchors(1.0f);
+    }
+
+    struct AnchorCoordinates
+    {
+        public int index;
+        public float distance;
+        public float angle;
+    }
+
+    void UpdateAnchors(float _t)
+    {
+        int unlinkedCount = 0;
+        for (int i = 0; i < links.Length; ++i)
+        {
+            if (links[i] == null)
+            {
+                ++unlinkedCount;
+            }
+        }
+
+        int unlinkedIndex = 0;
+        for (int i = 0; i < links.Length; ++i)
+        {
+            Vector3 anchorRelativePosition = linkAnchors[i].transform.position - transform.position;
+            anchorRelativePosition.z = 0.0f;
+            float currentDistance = anchorRelativePosition.magnitude;
+            float currentAngle = Mathf.Sign(Vector3.Cross(Vector3.right, anchorRelativePosition).z) * Vector2.Angle(Vector2.right, new Vector2(anchorRelativePosition.x, anchorRelativePosition.y));
+
+            float wantedDistance;
+            float wantedAngle;
+
+            if (links[i] != null)
+            {
+                Vector3 selfToOther = links[i].transform.position - transform.position;
+                wantedAngle = Mathf.Sign(Vector3.Cross(Vector3.right, selfToOther).z) * Vector2.Angle(Vector2.right, new Vector2(selfToOther.x, selfToOther.y));
+                wantedDistance = anchorLinkedRadius;
+            }
+            else
+            {
+                wantedAngle = 360.0f / unlinkedCount * unlinkedIndex;
+                wantedDistance = anchorIdleRadius;
+                if (owner != null && m_gm.GetCurrentPlayer() == owner)
+                {
+                    wantedAngle += (Time.timeSinceLevelLoad % (360.0f / anchorRotationSpeed)) * anchorRotationSpeed;
+                    wantedDistance = anchorActiveRadius;
+                }
+                ++unlinkedIndex;
+            }
+
+
+            float actualDistance = Mathf.Lerp(currentDistance, wantedDistance, _t);
+            float actualRadAngle = Mathf.Deg2Rad * Mathf.LerpAngle((currentAngle + 360.0f) % 360.0f, (wantedAngle + 360.0f) % 360.0f, _t);
+
+            linkAnchors[i].transform.position = transform.position + new Vector3(Mathf.Cos(actualRadAngle) * actualDistance, Mathf.Sin(actualRadAngle) * actualDistance, linkAnchors[i].transform.position.z - transform.position.z);
         }
     }
 

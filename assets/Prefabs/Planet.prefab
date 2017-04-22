@@ -103,7 +103,11 @@ MonoBehaviour:
     type: 2}
   linkAnchorPrefab: {fileID: 1927864063579832, guid: 116de5bff76ee9840970ace8f0a17a74,
     type: 2}
-  anchorRadius: 0.5
+  anchorIdleRadius: 0.175
+  anchorActiveRadius: 0.26
+  anchorLinkedRadius: 0.35
+  anchorAcceleration: 0.2
+  anchorRotationSpeed: 20
 --- !u!135 &135232037952070218
 SphereCollider:
   m_ObjectHideFlags: 1
